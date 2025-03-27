@@ -33,7 +33,7 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/New_Shapefile_0.js"></script>
+        <script src="data/New_Shapefile_1.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -75,7 +75,18 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        function pop_New_Shapefile_0(feature, layer) {
+        map.createPane('pane_WorldImagery_0');
+        map.getPane('pane_WorldImagery_0').style.zIndex = 400;
+        var layer_WorldImagery_0 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_WorldImagery_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+        });
+        layer_WorldImagery_0;
+        map.addLayer(layer_WorldImagery_0);
+        function pop_New_Shapefile_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Id'] !== null ? autolinker.link(String(feature.properties['Id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -91,9 +102,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_New_Shapefile_0_0() {
+        function style_New_Shapefile_1_0() {
             return {
-                pane: 'pane_New_Shapefile_0',
+                pane: 'pane_New_Shapefile_1',
                 opacity: 1,
                 color: 'rgba(164,88,121,1.0)',
                 dashArray: '',
@@ -104,20 +115,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_New_Shapefile_0');
-        map.getPane('pane_New_Shapefile_0').style.zIndex = 400;
-        map.getPane('pane_New_Shapefile_0').style['mix-blend-mode'] = 'normal';
-        var layer_New_Shapefile_0 = new L.geoJson(json_New_Shapefile_0, {
+        map.createPane('pane_New_Shapefile_1');
+        map.getPane('pane_New_Shapefile_1').style.zIndex = 401;
+        map.getPane('pane_New_Shapefile_1').style['mix-blend-mode'] = 'normal';
+        var layer_New_Shapefile_1 = new L.geoJson(json_New_Shapefile_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_New_Shapefile_0',
-            layerName: 'layer_New_Shapefile_0',
-            pane: 'pane_New_Shapefile_0',
-            onEachFeature: pop_New_Shapefile_0,
-            style: style_New_Shapefile_0_0,
+            dataVar: 'json_New_Shapefile_1',
+            layerName: 'layer_New_Shapefile_1',
+            pane: 'pane_New_Shapefile_1',
+            onEachFeature: pop_New_Shapefile_1,
+            style: style_New_Shapefile_1_0,
         });
-        bounds_group.addLayer(layer_New_Shapefile_0);
-        map.addLayer(layer_New_Shapefile_0);
+        bounds_group.addLayer(layer_New_Shapefile_1);
+        map.addLayer(layer_New_Shapefile_1);
         setBounds();
         </script>
     </body>
